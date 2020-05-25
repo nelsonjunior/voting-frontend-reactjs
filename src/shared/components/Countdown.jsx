@@ -1,46 +1,37 @@
+import { Grid, Typography } from "@material-ui/core";
 import React from "react";
-import { Grid, withStyles, Typography } from "@material-ui/core";
-
-const styles = (theme) => ({
-  root: {
-    width: 150,
-  },
-});
 
 class Countdown extends React.Component {
   render() {
-    const { classes } = this.props;
-    // const { data } = this.props;
     return (
-      <React.Fragment>
-        <Grid container spacing={3}>
-          <Grid
-            item
-            xs={3}
-            container
-            direction="column"
-            alignItems={"center"}
-            alignItems={"center"}
-          >
-            <Typography variant="h5">370</Typography>
-            <Typography variant="caption">days</Typography>
+        <React.Fragment>
+          <Grid container spacing={1}>
+            <Grid
+              item
+              xs={3}
+              container
+              direction="column"
+              alignItems={"center"}
+            >
+              <Typography variant="h6">370</Typography>
+              <Typography variant="caption">days</Typography>
+            </Grid>
+            <Grid item xs={3} container direction="column" alignItems={"center"}>
+              <Typography variant="h6">20</Typography>
+              <Typography variant="caption">hours</Typography>
+            </Grid>
+            <Grid item xs={3} container direction="column" alignItems={"center"}>
+              <Typography variant="h6">19</Typography>
+              <Typography variant="caption">mins</Typography>
+            </Grid>
+            <Grid item xs={3} container direction="column" alignItems={"center"}>
+              <Typography variant="h6">50</Typography>
+              <Typography variant="caption">seconds</Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={3} container direction="column" alignItems={"center"}>
-            <Typography variant="h5">20</Typography>
-            <Typography variant="caption">hours</Typography>
-          </Grid>
-          <Grid item xs={3} container direction="column" alignItems={"center"}>
-            <Typography variant="h5">19</Typography>
-            <Typography variant="caption">mins</Typography>
-          </Grid>
-          <Grid item xs={3} container direction="column" alignItems={"center"}>
-            <Typography variant="h5">50</Typography>
-            <Typography variant="caption">seconds</Typography>
-          </Grid>
-        </Grid>
-      </React.Fragment>
+        </React.Fragment>
     );
   }
 }
 
-export default withStyles(styles)(Countdown);
+export default Countdown;

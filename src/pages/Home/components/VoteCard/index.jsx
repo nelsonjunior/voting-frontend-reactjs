@@ -5,10 +5,13 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import TimerUtil from "../../../../shared/utils/TimerUtil";
-import { Grid } from "@material-ui/core";
+import { Grid, Button, Box } from "@material-ui/core";
+import SendIcon from '@material-ui/icons/Send';
 import Countdown from "../../../../shared/components/Countdown";
+import VoteItemCard from "../VoteItemCard";
+import Constantes from "../../../../shared/utils/Constantes";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     width: 1100,
@@ -19,14 +22,29 @@ const useStyles = makeStyles({
     flex: 1
   },
   cover: {
-    width: 250,
+    width: 350,
     height: 250,
   },
-});
+  countdown: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  }
+}));
 
 export default function VoteCard() {
   const classes = useStyles();
   const [currentPoll, setCurrentPoll] = useState(null);
+
+  function generateVoteItem(element) {
+    return currentPoll.options.map((value) =>
+      React.cloneElement(element, {
+        key: value.title,
+        titleItemVote: value.title,
+        imgItemVote: value.coverImage
+      }),
+    );
+  }
 
   function handleLoadCurrentPoll() {
     const data = {
@@ -36,11 +54,23 @@ export default function VoteCard() {
       expirationDate: new Date(),
       countVotes: 10,
       createdAt: new Date(),
-      coverImage: "",
+      coverImage: Constantes.webFrameworks,
       options: [
         {
-          title: "Op 10",
-          coverImage: "",
+          title: "NestJS - Node",
+          coverImage: "https://docs.nestjs.com/assets/logo-small.svg",
+        },
+        {
+          title: "Buffalo - Go Lang",
+          coverImage: "https://www.clipartmax.com/png/small/414-4145925_reflecting-on-the-first-year-of-buffalo-buffalo-rapid-golang-buffalo.png",
+        },
+        {
+          title: "SpringBoot - Java",
+          coverImage: "https://gitlab.com/uploads/-/system/project/avatar/10814146/1_O68LbDvD5Dcsnez73M7v4Q.png",
+        },
+        {
+          title: "Flask - Python",
+          coverImage: Constantes.flaskIcon,
         },
       ],
     };
@@ -50,7 +80,7 @@ export default function VoteCard() {
 
   useEffect(() => {
     // Especifique como limpar depois desse efeito:
-    return function cleanup() {};
+    return function cleanup() { };
   });
   if (currentPoll === null) {
     TimerUtil.sleep(500).then(() => {
@@ -62,7 +92,7 @@ export default function VoteCard() {
     <Card className={classes.root}>
       <CardMedia
         className={classes.cover}
-        image="/assets/images/default-placeholder-1-2.png"
+        image={currentPoll.coverImage}
         title="Live from space album cover"
       />
       <CardContent
@@ -74,19 +104,51 @@ export default function VoteCard() {
           alignItems={"flex-start"}
         >
           <Grid item xs={9}>
-            <Typography component="h5" variant="h5">
+            <Typography variant="h5">
               {currentPoll.title}
             </Typography>
-            <Typography variant="subtitle2" color="textSecondary">
+            <Typography variant="subtitle1" color="textSecondary">
               {currentPoll.description}
             </Typography>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={3} className={classes.countdown}>
             <Typography variant="subtitle2" align={'right'}>
-                Countdown
+              Countdown
             </Typography>
             <Countdown />
           </Grid>
+          <Grid item xs={12}
+            container
+            direction={"row"}>
+            <Grid item xs={10} container>
+              {
+                generateVoteItem(
+                  <VoteItemCard />
+                )
+              }
+            {/*   
+              <VoteItemCard />
+              <VoteItemCard />
+              <VoteItemCard /> */}
+            </Grid>
+            <Grid item xs={2}
+              container
+              direction={"column"}
+              alignItems={"flex-end"}
+              justify={"flex-end"}>
+              <Box paddingBottom={1}>
+                <Typography variant="subtitle2">
+                  {currentPoll.countVotes} votes
+                </Typography>
+              </Box>
+              <Button variant="contained"
+                color="primary"
+                startIcon={<SendIcon />}>
+                Vote
+              </Button>
+            </Grid>
+          </Grid>
+
         </Grid>
       </CardContent>
     </Card>
