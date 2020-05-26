@@ -3,7 +3,7 @@ import "./App.css";
 import "typeface-roboto";
 import Routes from "./routes";
 import { ThemeProvider, createMuiTheme, makeStyles } from "@material-ui/core";
-import { blue, indigo } from "@material-ui/core/colors";
+import { blue, indigo, grey } from "@material-ui/core/colors";
 
 window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
@@ -19,6 +19,21 @@ const theme = createMuiTheme({
   typography: {
     // Use the system font instead of the default Roboto font.
     fontFamily: ['"Lato"', "sans-serif"].join(","),
+    h6: {
+      fontWeight: 700,
+      fontStretch: "codensed"
+    },
+    h5: {
+      fontWeight: [700],
+      paddingBottom: 10,
+    },
+    subtitle1: {
+      fontWeight: [500],
+    },
+    subtitle2: {
+      fontWeight: [700],
+      color: grey[400],
+    }
   },
 });
 
