@@ -10,6 +10,7 @@ import SendIcon from "@material-ui/icons/Send";
 import Countdown from "../../../../shared/components/Countdown";
 import VoteItemCard from "../VoteItemCard";
 import Constantes from "../../../../shared/utils/Constantes";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,7 +71,7 @@ export default function VoteCard() {
       title: "The best framework for Backend web app",
       description:
         "Select the best framework to develop the backend of a modern web application",
-      expirationDate: new Date(),
+      expirationDate: moment().add(1, 'hours').format("MM-DD-YYYY H:mm:ss"),
       countVotes: 10,
       createdAt: new Date(),
       coverImage: Constantes.webFrameworks,
@@ -113,6 +114,8 @@ export default function VoteCard() {
     });
     return "Loading...";
   }
+  console.log(moment().add(1, 'hours').toString());
+  console.log(moment().add(1, 'hours').format("MM-DD-YYYY H:mm:ss"));
   return (
     <Card className={classes.root}>
       <CardMedia
@@ -137,7 +140,7 @@ export default function VoteCard() {
             <Typography variant="subtitle2" align={"right"}>
               Countdown
             </Typography>
-            <Countdown />
+            <Countdown timeTillDate={currentPoll.expirationDate} timeFormat="MM-DD-YYYY h:mm:ss" />
           </Grid>
           <Grid
             item
