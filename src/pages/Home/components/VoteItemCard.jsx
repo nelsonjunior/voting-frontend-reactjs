@@ -1,6 +1,8 @@
-import { Avatar, Box, Typography, Button } from "@material-ui/core";
+import { Avatar, Typography} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import FolderIcon from '@material-ui/icons/Folder';
+import {ToggleButton, ToggleButtonGroup} from '@material-ui/lab';
+
+
 import React from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -10,6 +12,12 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "flex-start",
         margin: [theme.spacing(1)],
         minWidth: 250,
+        [theme.breakpoints.down("sm")]: {
+            minWidth: "100%",
+        },
+        [theme.disabled]: {
+            color: 'red'
+        }
     },
     
     space: {
@@ -20,17 +28,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function VoteItemCard(props) {
     const classes = useStyles();
-    const {imgItemVote, titleItemVote} = props;
+    const {imgItemVote, titleItemVote, selected} = props;
     return (
         <React.Fragment>
-            <Button className={classes.content} variant="outlined">
-                <Avatar alt={titleItemVote} src={imgItemVote} />
-                <Typography
-                    className={classes.space}
-                    variant="subtitle1" color="textSecondary">
-                    {titleItemVote}
-                </Typography>
-            </Button>
+            <ToggleButtonGroup value={titleItemVote}>
+                <ToggleButton className={classes.content} selected={selected}
+                    variant="outlined" value={titleItemVote}>
+                    <Avatar alt={titleItemVote} src={imgItemVote} />
+                    <Typography
+                        className={classes.space}
+                        variant="subtitle1" color="textSecondary">
+                        {titleItemVote}
+                    </Typography>
+                </ToggleButton>
+            </ToggleButtonGroup>
         </React.Fragment>
     );
 }
