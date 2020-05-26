@@ -11,13 +11,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         justifyContent: "flex-start",
         margin: [theme.spacing(1)],
-        minWidth: 250,
-        [theme.breakpoints.down("sm")]: {
-            minWidth: "100%",
-        },
-        [theme.disabled]: {
-            color: 'red'
-        }
+        minWidth: 250
     },
     
     space: {
