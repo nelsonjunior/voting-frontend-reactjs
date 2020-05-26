@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![Node.js CI](https://github.com/nelsonjunior/voting-frontend-reactjs/workflows/Node.js%20CI/badge.svg?branch=master)
+
 ## Available Scripts
 
 In the project directory, you can run:
