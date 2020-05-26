@@ -47,13 +47,13 @@ class Countdown extends React.Component {
       return (
         <React.Fragment>
           <Grid container alignItems={"center"} justify={"flex-end"}>
-              <Typography variant="h6">EXPIRED</Typography>
+            <Typography variant="h6">EXPIRED</Typography>
           </Grid>
         </React.Fragment>
       );
     }
 
-    if(!seconds){
+    if (!seconds) {
       return (<Skeleton height={50} />);
     }
 
@@ -64,18 +64,18 @@ class Countdown extends React.Component {
             <Typography variant="h6">{days}</Typography>
             <Typography variant="caption">days</Typography>
           </Grid>
-          <Grid item xs={3} container dirßection="column" alignItems={"center"}>
+          <Grid item xs={3} container direction="column" alignItems={"center"}>
             <Typography variant="h6">{hours}</Typography>
-          <Typography variant="caption">hours</Typography>
-        </Grid>
-        <Grid item xs={3} container direction="column" alignItems={"center"}>
-          <Typography variant="h6">{minutes}</Typography>
-          <Typography variant="caption">mins</Typography>
-        </Grid>
-        <Grid item xs={3} container direction="column" alignItems={"center"}>
-          <Typography variant="h6">{seconds}</Typography>
-          <Typography variant="caption">seconds</Typography>
-        </Grid>
+            <Typography variant="caption">hours</Typography>
+          </Grid>
+          <Grid item xs={3} container direction="column" alignItems={"center"}>
+            <Typography variant="h6">{minutes}</Typography>
+            <Typography variant="caption">mins</Typography>
+          </Grid>
+          <Grid item xs={3} container direction="column" alignItems={"center"}>
+            <Typography variant="h6">{seconds}</Typography>
+            <Typography variant="caption">seconds</Typography>
+          </Grid>
         </Grid>
       </React.Fragment >
     );
