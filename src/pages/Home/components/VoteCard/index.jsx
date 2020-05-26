@@ -71,7 +71,7 @@ export default function VoteCard() {
       title: "The best framework for Backend web app",
       description:
         "Select the best framework to develop the backend of a modern web application",
-      expirationDate: moment().add(1, 'hours').format("MM-DD-YYYY H:mm:ss"),
+      expirationDate: moment().add(25, 'seconds').format("MM-DD-YYYY H:mm:ss"),
       countVotes: 10,
       createdAt: new Date(),
       coverImage: Constantes.webFrameworks,
@@ -94,8 +94,8 @@ export default function VoteCard() {
           selected: false,
         },
         {
-          title: "Flask - Python",
-          coverImage: Constantes.flaskIcon,
+          title: "Phoenix - Elixir",
+          coverImage: Constantes.phoenixElixirIcon,
           selected: false,
         },
       ],
@@ -114,8 +114,6 @@ export default function VoteCard() {
     });
     return "Loading...";
   }
-  console.log(moment().add(1, 'hours').toString());
-  console.log(moment().add(1, 'hours').format("MM-DD-YYYY H:mm:ss"));
   return (
     <Card className={classes.root}>
       <CardMedia
