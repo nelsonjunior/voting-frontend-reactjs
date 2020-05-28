@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import React from 'react';
-import VoteCard from '.';
+import VoteCard from './VoteCard';
 
 test('renders loading', () => {
   const { getByText } = render(<VoteCard />);

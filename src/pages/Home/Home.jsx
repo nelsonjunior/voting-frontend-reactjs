@@ -1,19 +1,22 @@
 import React from "react";
-import { makeStyles, Grid, CssBaseline } from "@material-ui/core";
-import VoteCard from "./components/VoteCard";
+import { makeStyles, Grid, CssBaseline, Typography } from "@material-ui/core";
 import NavBar from "../../shared/components/NavBar";
+import VoteCard from "./components/VoteCard";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   grid: {
-    width: 1200,
+    width: 1100,
     marginTop: 20,
     [theme.breakpoints.down("sm")]: {
       width: "calc(100% - 20px)",
     },
   },
+  container:{
+    width: 1100,
+  }
 }));
 
 export default function Home() {
@@ -33,6 +36,11 @@ export default function Home() {
             className={classes.grid}
           >
             <VoteCard />
+            <Grid item xs container >
+
+              <Typography variant="h5">LATEST POLLS</Typography>
+            </Grid>
+
           </Grid>
         </Grid>
       </div>

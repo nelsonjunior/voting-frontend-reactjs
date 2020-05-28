@@ -4,12 +4,12 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import TimerUtil from "../../../../shared/utils/TimerUtil";
+import TimerUtil from "../../../shared/utils/TimerUtil";
 import { Grid, Button, Box } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
-import Countdown from "../../../../shared/components/Countdown";
-import VoteItemCard from "../VoteItemCard";
-import Constantes from "../../../../shared/utils/Constantes";
+import Countdown from "../../../shared/components/Countdown";
+import VoteItemCard from "./VoteItemCard";
+import Constantes from "../../../shared/utils/Constantes";
 import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({

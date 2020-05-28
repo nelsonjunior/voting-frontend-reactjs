@@ -1,7 +1,7 @@
 import React from 'react'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 import ScrollTop from './shared/components/ScrollTop'
-import Home from './pages/Home' 
+import Home from './pages/Home/Home' 
 
 export default props => ( 
     <HashRouter>
