@@ -11,11 +11,15 @@ import Countdown from "../../../shared/components/Countdown";
 import VoteItemCard from "./VoteItemCard";
 import Constantes from "../../../shared/utils/Constantes";
 import moment from "moment";
+import Data from "../../../shared/utils/Data";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     width: 1100,
+    [theme.breakpoints.down("sm")]: {
+      width: 450,
+    }
   },
   details: {
     display: "flex",
@@ -67,41 +71,8 @@ export default function VoteCard() {
   }
 
   function handleLoadCurrentPoll() {
-    const data = {
-      title: "The best framework for Backend web app",
-      description:
-        "Select the best framework to develop the backend of a modern web application",
-      expirationDate: moment().add(25, 'seconds').format("MM-DD-YYYY H:mm:ss"),
-      countVotes: 10,
-      createdAt: new Date(),
-      coverImage: Constantes.webFrameworks,
-      options: [
-        {
-          title: "NestJS - Node",
-          coverImage: "https://docs.nestjs.com/assets/logo-small.svg",
-          selected: true,
-        },
-        {
-          title: "Buffalo - Go Lang",
-          coverImage:
-            "https://www.clipartmax.com/png/small/414-4145925_reflecting-on-the-first-year-of-buffalo-buffalo-rapid-golang-buffalo.png",
-          selected: false,
-        },
-        {
-          title: "SpringBoot - Java",
-          coverImage:
-            "https://gitlab.com/uploads/-/system/project/avatar/10814146/1_O68LbDvD5Dcsnez73M7v4Q.png",
-          selected: false,
-        },
-        {
-          title: "Phoenix - Elixir",
-          coverImage: Constantes.phoenixElixirIcon,
-          selected: false,
-        },
-      ],
-    };
 
-    setCurrentPoll(data);
+    setCurrentPoll(Data.data);
   }
 
   useEffect(() => {
