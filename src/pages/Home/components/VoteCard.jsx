@@ -9,8 +9,6 @@ import { Grid, Button, Box } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import Countdown from "../../../shared/components/Countdown";
 import VoteItemCard from "./VoteItemCard";
-import Constantes from "../../../shared/utils/Constantes";
-import moment from "moment";
 import Data from "../../../shared/utils/Data";
 
 const useStyles = makeStyles((theme) => ({
