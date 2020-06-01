@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function VoteCard() {
+export default function VoteCard(props) {
   const classes = useStyles();
   const [currentPoll, setCurrentPoll] = useState(null);
 
@@ -78,6 +78,11 @@ export default function VoteCard() {
     return function cleanup() {};
   });
   if (currentPoll === null) {
+    if(props.id){
+      setCurrentPoll(Data.mapPoll[props.id])
+      return;
+    }
+
     TimerUtil.sleep(500).then(() => {
       handleLoadCurrentPoll();
     });
