@@ -37,7 +37,7 @@ const theme = createMuiTheme({
   },
 });
 
-const useStyles = makeStyles((theme) => ({
+const useStyles =  makeStyles({
   mainContainer: {
     backgroundColor: theme.palette.grey["100"],
     position: 'absolute',
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     left: 0,
   },
-}));
+});
 
 function App() {
   const classes = useStyles();
