@@ -22,6 +22,9 @@ jobs:
         projectKey: voting-frontend-reactjs
         orgnization: Vontig  
     - name: SonarCloud Scan
+      with:
+        projectKey: voting-frontend-reactjs
+        orgnization: Vontig  
       uses: sonarsource/sonarcloud-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
