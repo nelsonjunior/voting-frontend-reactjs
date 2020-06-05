@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ![Node.js CI](https://github.com/nelsonjunior/voting-frontend-reactjs/workflows/Node.js%20CI/badge.svg?branch=master)
-
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nelsonjunior_voting-frontend-reactjs&metric=alert_status)](https://sonarcloud.io/dashboard?id=nelsonjunior_voting-frontend-reactjs)
 ## Available Scripts
 
 In the project directory, you can run:
