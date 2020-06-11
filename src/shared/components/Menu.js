@@ -13,7 +13,7 @@ const Menu = [
   },
   {
     label: "Github",
-    pathname: "https://github.com/alexanmtz/material-sense",
+    pathname: "https://github.com/nelsonjunior/voting-frontend-reactjs",
     external: true
   }
 

@@ -118,13 +118,10 @@ class NavBar extends React.Component {
     if (this.props.currentPath === "/dashboard") {
       return 1;
     }
-    if (this.props.currentPath === "/signup") {
+    if (this.props.currentPath === "/about") {
       return 2;
     }
-    if (this.props.currentPath === "/wizard") {
-      return 3;
-    }
-    if (this.props.currentPath === "/cards") {
+    if (this.props.currentPath === "/github") {
       return 4;
     }
   };
