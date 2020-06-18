@@ -1,11 +1,12 @@
 import React from "react";
-import { makeStyles, Grid, CssBaseline, Typography } from "@material-ui/core";
+import { makeStyles, Grid, CssBaseline, Typography, Card, CardContent, ListItem, List, ListItemText, ListItemIcon, Divider } from "@material-ui/core";
 import NavBar from "../../shared/components/NavBar";
+import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   grid: {
     width: 1100,
@@ -16,37 +17,62 @@ const useStyles = makeStyles((theme) => ({
       alignItens: "center"
     },
   },
-  contentLatestPoll:{
-    [theme.breakpoints.down("sm")]: {
-      flexDirection: "column"
-    },
-  },
   spacingTitle: {
+    marginTop: theme.spacing(1),
+  },
+  spacingDivider: {
     marginTop: theme.spacing(3),
   }
 }));
 
+function generateItemList(list) {
+  return list.map((value) =>
+    <ListItem key={value}>
+      <ListItemIcon>
+        <FeaturedPlayListIcon fontSize="small" />
+      </ListItemIcon>
+      <ListItemText primary={value} />
+    </ListItem>
+  );
+}
+
 
 export default function About() {
   const classes = useStyles();
+  const listFeatures = ["Use of queued process to record vote", "Modern and responsive frontend", "Use of microservices for the backend"];
+  const listStackReact = ["[ReactJS] - HTML enhanced for web apps!", "[Chartkick] - beautiful JavaScript charts", "[Material-UI] - React components with Material Design"];
+
 
   return (
     <React.Fragment>
       <CssBaseline />
       <NavBar currentPath="/about" />
-      <div className={classes.root}>
-        <Grid container justify="center" >
-          <Grid
-            container
-            spacing={4}
-            justify="flex-start"
-            className={classes.grid} >
+      <Grid container
+        justify="center">
+        <Card className={classes.grid}>
+          <CardContent>
+            <Grid container alignContent="flex-start" direction="column" >
             
-            <Typography className={classes.spacingTitle} variant="h5">About</Typography>
-
-          </Grid>
-        </Grid>
-      </div>
+                <Typography variant="h5">Voting App</Typography>
+                <Typography className={classes.spacingTitle} variant="body1">This project is intended to study stack development of web applications with different backend and frontend.</Typography>
+                
+                <Divider variant="middle" className={classes.spacingDivider}/>
+                <Typography  className={classes.spacingTitle} variant="h6">Features</Typography>
+                <Typography className={classes.spacingTitle} variant="body1">You can also:</Typography>
+                <List dense>
+                  {generateItemList(listFeatures)}
+                </List>
+                <Typography  className={classes.spacingTitle} variant="h6">TechFrontend</Typography>
+                <Typography className={classes.spacingTitle} variant="body1">VotingApp uses a number of open source projects to work properly</Typography>
+                <Typography  className={classes.spacingTitle} variant="h6">Stack React</Typography>
+                <Typography className={classes.spacingTitle} variant="body1">You can also:</Typography>
+                <List dense>
+                  {generateItemList(listStackReact)}
+                </List>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
     </React.Fragment>
   );
 }

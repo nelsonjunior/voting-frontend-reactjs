@@ -1,18 +1,31 @@
 import { Grid, Typography } from "@material-ui/core";
 import React from "react";
 import moment from "moment";
-import { Skeleton } from "@material-ui/lab";
 
 class Countdown extends React.Component {
-  state = {
-    days: undefined,
-    hours: undefined,
-    minutes: undefined,
-    seconds: undefined,
-  };
+
+  constructor(props) {
+
+    console.log("Construindo componente! ", props);
+
+    super(props);
+
+    this.state = {
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    };
+  }
 
   componentDidMount() {
-    this.interval = setInterval(() => {
+
+    console.log("Criando componente! ", this.props);
+    
+    this.timerID = setInterval(() => {
+
+      console.log("Iniciar interval!");
+
       const { timeTillDate, timeFormat } = this.props;
       const then = moment(timeTillDate, timeFormat);
       const now = moment();
@@ -20,7 +33,7 @@ class Countdown extends React.Component {
       const distance = d.asMilliseconds();
 
       if (distance < 0) {
-        clearInterval(this.interval);
+        clearInterval(this.timerID);
         return;
       }
 
@@ -31,16 +44,29 @@ class Countdown extends React.Component {
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
       this.setState({ days, hours, minutes, seconds });
+
     }, 1000);
   }
 
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval);
+
+    console.log("Destruindo componente!");
+
+    if (this.timerID) {
+      clearInterval(this.timerID);
+      this.setState({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+      });
     }
   }
 
   render() {
+
+    console.log("Renderizando componente! ", this.state);
+
     const { days, hours, minutes, seconds } = this.state;
 
     if (seconds === 0) {
@@ -51,10 +77,6 @@ class Countdown extends React.Component {
           </Grid>
         </React.Fragment>
       );
-    }
-
-    if (!seconds) {
-      return (<Skeleton height={50} />);
     }
 
     return (

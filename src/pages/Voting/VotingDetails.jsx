@@ -5,6 +5,8 @@ import {
   CssBaseline,
   Typography,
   Breadcrumbs,
+  Card,
+  CardContent,
 } from "@material-ui/core";
 import NavBar from "../../shared/components/NavBar";
 import VoteCard from "../Home/components/VoteCard";
@@ -57,7 +59,7 @@ export default function VotingDetails(props) {
       <CssBaseline />
       <NavBar currentPath="Teste2" />
       <div className={classes.root}>
-        <Grid container justify="center">
+        <Grid container justify="center" >
           <Grid
             container
             spacing={4}
@@ -80,14 +82,19 @@ export default function VotingDetails(props) {
             <Typography className={classes.spacingTitle} variant="h5">
               GRAPHICS RESULT
             </Typography>
-            <Grid container justify="space-evenly">
-              <Grid item xs={8}>
-                <LineChart data={data} legend="bottom"/>
-              </Grid>
-              <Grid item xs={4}>
-                 <PieChart legend={false} data={[["More of the same", 35], ["Very Good", 23], ["Good", 17], ["Bad", 25]]} />
-              </Grid>
-            </Grid>
+            
+            <Card className={classes.root}>
+              <CardContent>
+                <Grid container justify="space-evenly">
+                  <Grid item xs={8}>
+                    <LineChart data={data} legend="bottom"/>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <PieChart legend={false} data={[["More of the same", 35], ["Very Good", 23], ["Good", 17], ["Bad", 25]]} />
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
           </Grid>
         </Grid>
       </div>
