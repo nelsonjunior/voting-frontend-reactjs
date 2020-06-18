@@ -7,7 +7,7 @@ class Data {
     title: "The best framework for Backend web app",
     description:
       "Select the best framework to develop the backend of a modern web application",
-    expirationDate: moment().add(25, "seconds").format("MM-DD-YYYY H:mm:ss"),
+    expirationDate: moment().add(10, "minutes").format("MM-DD-YYYY H:mm:ss"),
     countVotes: 10,
     createdAt: new Date(),
     coverImage: Constantes.webFrameworks,

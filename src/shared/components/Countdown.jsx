@@ -1,49 +1,70 @@
 import { Grid, Typography } from "@material-ui/core";
 import React from "react";
 import moment from "moment";
-import { Skeleton } from "@material-ui/lab";
+import TimerUtil from "../utils/TimerUtil";
 
 class Countdown extends React.Component {
-  state = {
-    days: undefined,
-    hours: undefined,
-    minutes: undefined,
-    seconds: undefined,
-  };
+
+  constructor(props) {
+    super(props);
+
+    const { timeTillDate, timeFormat } = this.props;
+    const then = moment(timeTillDate, timeFormat);
+    const now = moment();
+    const d = moment.duration(then.diff(now));
+    const distanceNow = d.asMilliseconds();
+    const {days, hours, minutes, seconds} = TimerUtil.caluleCountdown(distanceNow);
+
+    this.state = {
+      runner:true,
+      distance: d.asMilliseconds(),
+      days,
+      hours,
+      minutes,
+      seconds
+    };
+
+  }
 
   componentDidMount() {
-    this.interval = setInterval(() => {
-      const { timeTillDate, timeFormat } = this.props;
-      const then = moment(timeTillDate, timeFormat);
-      const now = moment();
-      const d = moment.duration(then.diff(now));
-      const distance = d.asMilliseconds();
+  
+    this.timerID = setInterval(() => {
+      let runner = true;
+      let distanceNow = this.state.distance;
 
-      if (distance < 0) {
-        clearInterval(this.interval);
+      distanceNow = distanceNow - 1000;
+      
+      if (distanceNow < 0) {
+        clearInterval(this.timerID);
+        runner = false;
+        this.setState({runner});
         return;
       }
 
-      // Time calculations for days, hours, minutes and seconds
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const {days, hours, minutes, seconds} = TimerUtil.caluleCountdown(distanceNow);
 
-      this.setState({ days, hours, minutes, seconds });
+      this.setState({days, hours, minutes, seconds, runner, distance: distanceNow });
+
     }, 1000);
   }
 
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval);
+    if (this.timerID) {
+      clearInterval(this.timerID);
+      this.setState({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+      });
     }
   }
 
   render() {
-    const { days, hours, minutes, seconds } = this.state;
-
-    if (seconds === 0) {
+    
+    const { days, hours, minutes, seconds, runner } = this.state;
+    
+    if (!runner) {
       return (
         <React.Fragment>
           <Grid container alignItems={"center"} justify={"flex-end"}>
@@ -51,10 +72,6 @@ class Countdown extends React.Component {
           </Grid>
         </React.Fragment>
       );
-    }
-
-    if (!seconds) {
-      return (<Skeleton height={50} />);
     }
 
     return (

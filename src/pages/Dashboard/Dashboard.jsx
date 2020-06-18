@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, Grid, CssBaseline, Typography } from "@material-ui/core";
+import { makeStyles, Grid, CssBaseline, Typography, Card, CardContent } from "@material-ui/core";
 import NavBar from "../../shared/components/NavBar";
 
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
       alignItens: "center"
     },
   },
-  contentLatestPoll:{
+  contentLatestPoll: {
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column"
     },
@@ -34,19 +34,18 @@ export default function DashBoard() {
     <React.Fragment>
       <CssBaseline />
       <NavBar currentPath="/dashboard" />
-      <div className={classes.root}>
-        <Grid container justify="center" >
-          <Grid
-            container
-            spacing={4}
-            justify="flex-start"
-            className={classes.grid} >
-            
-            <Typography className={classes.spacingTitle} variant="h5">DashBoard</Typography>
+      <Grid container
+        justify="center">
+        <Card className={classes.grid}>
+          <CardContent>
+            <Grid container alignContent="flex-start" direction="column" >
 
-          </Grid>
-        </Grid>
-      </div>
-    </React.Fragment>
+              <Typography variant="h5">DashBoard</Typography>
+
+            </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
+    </React.Fragment >
   );
 }
