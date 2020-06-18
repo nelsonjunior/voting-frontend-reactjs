@@ -1,57 +1,54 @@
 import { Grid, Typography } from "@material-ui/core";
 import React from "react";
 import moment from "moment";
+import TimerUtil from "../utils/TimerUtil";
 
 class Countdown extends React.Component {
 
   constructor(props) {
-
-    console.log("Construindo componente! ", props);
-
     super(props);
 
+    const { timeTillDate, timeFormat } = this.props;
+    const then = moment(timeTillDate, timeFormat);
+    const now = moment();
+    const d = moment.duration(then.diff(now));
+    const distanceNow = d.asMilliseconds();
+    const {days, hours, minutes, seconds} = TimerUtil.caluleCountdown(distanceNow);
+
     this.state = {
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
+      runner:true,
+      distance: d.asMilliseconds(),
+      days,
+      hours,
+      minutes,
+      seconds
     };
+
   }
 
   componentDidMount() {
-
-    console.log("Criando componente! ", this.props);
-    
+  
     this.timerID = setInterval(() => {
+      let runner = true;
+      let distanceNow = this.state.distance;
 
-      console.log("Iniciar interval!");
-
-      const { timeTillDate, timeFormat } = this.props;
-      const then = moment(timeTillDate, timeFormat);
-      const now = moment();
-      const d = moment.duration(then.diff(now));
-      const distance = d.asMilliseconds();
-
-      if (distance < 0) {
+      distanceNow = distanceNow - 1000;
+      
+      if (distanceNow < 0) {
         clearInterval(this.timerID);
+        runner = false;
+        this.setState({runner});
         return;
       }
 
-      // Time calculations for days, hours, minutes and seconds
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const {days, hours, minutes, seconds} = TimerUtil.caluleCountdown(distanceNow);
 
-      this.setState({ days, hours, minutes, seconds });
+      this.setState({days, hours, minutes, seconds, runner, distance: distanceNow });
 
     }, 1000);
   }
 
   componentWillUnmount() {
-
-    console.log("Destruindo componente!");
-
     if (this.timerID) {
       clearInterval(this.timerID);
       this.setState({
@@ -64,12 +61,10 @@ class Countdown extends React.Component {
   }
 
   render() {
-
-    console.log("Renderizando componente! ", this.state);
-
-    const { days, hours, minutes, seconds } = this.state;
-
-    if (seconds === 0) {
+    
+    const { days, hours, minutes, seconds, runner } = this.state;
+    
+    if (!runner) {
       return (
         <React.Fragment>
           <Grid container alignItems={"center"} justify={"flex-end"}>
