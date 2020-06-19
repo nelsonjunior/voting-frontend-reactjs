@@ -3,6 +3,7 @@ import React from 'react';
 import Countdown from './Countdown';
 import { act } from 'react-dom/test-utils';
 import moment from "moment";
+import { shallow } from 'enzyme';
 
 let container = null;
 
@@ -12,9 +13,11 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  document.body.removeChild(container);
+  ReactDOM.unmountComponentAtNode(container);
+  container.remove();
   container = null;
 });
+
 
 it('check render elements', () => {
   const format = "MM-DD-YYYY H:mm:ss";
@@ -86,4 +89,18 @@ it('can render exactly timer', () => {
   
   expect(elements[3].textContent).toBe('3');
 
+});
+
+
+it('componentWillUnmount should be called on unmount', () => {
+  
+  const format = "MM-DD-YYYY H:mm:ss";
+  const timeTillDate = moment().add(3, "seconds").format(format);
+  
+  const wrapper = shallow(<Countdown timeTillDate={timeTillDate} timeFormat={format} />);
+  const componentWillUnmount = jest.spyOn(wrapper.instance(), 'componentWillUnmount');
+
+  wrapper.unmount()
+
+  expect(componentWillUnmount).toHaveBeenCalled();
 });
