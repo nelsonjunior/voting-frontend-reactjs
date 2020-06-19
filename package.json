@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^26.0.0",
     "chart.js": "^2.9.3",
+    "jest": "^26.0.1",
     "moment": "^2.26.0",
     "momentjs": "^2.0.0",
     "react": "^16.13.1",
@@ -17,12 +18,13 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "sonar-scanner": "^3.1.0",
     "typeface-roboto": "0.0.75"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --testResultsProcessor",
     "eject": "react-scripts eject",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache"
   },
