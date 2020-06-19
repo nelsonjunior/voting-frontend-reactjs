@@ -52,10 +52,5 @@
     "reportPath": "testResults",
     "reportFile": "sonar-report.xml",
     "indent": 4
-  },
-  "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ]
   }
 }
