@@ -1,0 +1,2 @@
+REM docker run -d --name sonarqube -p 9000:9000 sonarqube
+sonar-scanner.bat -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=c709821010f73dd931505bc0ace9b461b631c79c" -D"project.settings=sonar-project.properties"

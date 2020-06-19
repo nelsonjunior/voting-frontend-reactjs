@@ -13,10 +13,10 @@ class Countdown extends React.Component {
     const now = moment();
     const d = moment.duration(then.diff(now));
     const distanceNow = d.asMilliseconds();
-    const {days, hours, minutes, seconds} = TimerUtil.caluleCountdown(distanceNow);
+    const { days, hours, minutes, seconds } = TimerUtil.caluleCountdown(distanceNow);
 
     this.state = {
-      runner:true,
+      runner: true,
       distance: d.asMilliseconds(),
       days,
       hours,
@@ -27,43 +27,41 @@ class Countdown extends React.Component {
   }
 
   componentDidMount() {
-  
+
     this.timerID = setInterval(() => {
       let runner = true;
       let distanceNow = this.state.distance;
 
       distanceNow = distanceNow - 1000;
-      
+
       if (distanceNow < 0) {
         clearInterval(this.timerID);
         runner = false;
-        this.setState({runner});
+        this.setState({ runner });
         return;
       }
 
-      const {days, hours, minutes, seconds} = TimerUtil.caluleCountdown(distanceNow);
+      const { days, hours, minutes, seconds } = TimerUtil.caluleCountdown(distanceNow);
 
-      this.setState({days, hours, minutes, seconds, runner, distance: distanceNow });
+      this.setState({ days, hours, minutes, seconds, runner, distance: distanceNow });
 
     }, 1000);
   }
 
   componentWillUnmount() {
-    if (this.timerID) {
-      clearInterval(this.timerID);
-      this.setState({
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      });
-    }
+    clearInterval(this.timerID);
+    this.setState({
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    });
   }
 
   render() {
-    
+
     const { days, hours, minutes, seconds, runner } = this.state;
-    
+
     if (!runner) {
       return (
         <React.Fragment>
