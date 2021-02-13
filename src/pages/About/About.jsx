@@ -55,7 +55,8 @@ export default function About() {
             
                 <Typography variant="h5">Voting App</Typography>
                 <Typography className={classes.spacingTitle} variant="body1">This project is intended to study stack development of web applications with different backend and frontend.</Typography>
-                
+                <Typography className={classes.spacingTitle} variant="body1">Project build by Nelson.</Typography>
+              
                 <Divider variant="middle" className={classes.spacingDivider}/>
                 <Typography  className={classes.spacingTitle} variant="h6">Features</Typography>
                 <Typography className={classes.spacingTitle} variant="body1">You can also:</Typography>
